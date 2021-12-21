@@ -1,0 +1,51 @@
+swagger: "2.0"
+info:
+  description: Swagger for Test Service
+  version: "1.0.0"
+  title: Test Service
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /
+
+paths:
+  /v1/ping:
+    get:
+      tags:
+      - "Health_Check"
+      summary: "Service ping pong"
+      description: "Service ping pong check"
+      operationId: routes.ping
+      responses:
+        500:
+          description: Server error
+        200:
+          description: Ping Successful
+          schema:
+            type: string
+
+  /v1/evaluate:
+    post:
+      tags:
+        - "Evaluate and Solve"
+      summary: "Evaluate and Solve the equation"
+      description: "Evaluate and Solve the equation"
+      operationId: routes.evaluate
+      parameters:
+        - name: input_dict
+          in: body
+          required: True
+          schema:
+            type: object
+            properties:
+              equation:
+                type: string
+      responses:
+        500:
+          description: Server error
+        200:
+          description: Successful
+          schema:
+            type: string
