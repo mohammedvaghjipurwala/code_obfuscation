@@ -1,5 +1,4 @@
 
-
 class Solver:
     def solve(self, equation):
         try:
