@@ -19,7 +19,7 @@ mash_path = os.path.dirname(sys.argv[0])
 
 ### Get .py files
 extensions = []
-excludefiles = ['compile', '__init__', 'server', 'routes']
+excludefiles = ['compile', '__init__', 'main', 'routes']
 
 ### build .so files from .py files ###
 for file in list(Path(mash_path).glob('**/*.py')):
@@ -28,7 +28,6 @@ for file in list(Path(mash_path).glob('**/*.py')):
     if file.stat().st_size != 0 and filename not in excludefiles:
         relpath = os.path.relpath(os.path.dirname(file.absolute().as_posix()), mash_path)
         packagename = relpath.replace('/', '.') + '.' + filename if relpath != '.' else filename
-        print(relpath + ":" + packagename)
         extensions.append([Extension(packagename, [str(file)])])
 
 for ext in extensions:
